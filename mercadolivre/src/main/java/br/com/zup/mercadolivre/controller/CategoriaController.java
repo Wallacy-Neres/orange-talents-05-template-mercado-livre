@@ -9,21 +9,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.mercadolivre.controller.dto.UsuarioRequestDto;
-import br.com.zup.mercadolivre.model.Usuario;
-import br.com.zup.mercadolivre.repository.UsuarioRepository;
+import br.com.zup.mercadolivre.controller.dto.CategoriaRequestDto;
+import br.com.zup.mercadolivre.model.Categoria;
+import br.com.zup.mercadolivre.repository.CategoriaRepository;
 
 @RestController
-@RequestMapping("usuario")
-public class UsuarioController {
+@RequestMapping("categoria")
+public class CategoriaController {
 	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private CategoriaRepository categoriaRepository;
 	
 	@PostMapping
-	public ResponseEntity<?> cadastrarUsuario(@RequestBody @Valid UsuarioRequestDto usuarioRequestDto){
-		Usuario usuario = usuarioRequestDto.converter();
-		usuarioRepository.save(usuario);
+	public ResponseEntity<?> cadastrarCategoria(@RequestBody @Valid CategoriaRequestDto categoriaRequestDto){
+		Categoria categoria = categoriaRequestDto.converter(categoriaRepository);
+		categoriaRepository.save(categoria);
 		return ResponseEntity.ok().build();
 	}
 }
