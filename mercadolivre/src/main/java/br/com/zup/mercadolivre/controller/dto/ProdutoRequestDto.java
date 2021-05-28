@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -16,6 +17,7 @@ import org.hibernate.validator.constraints.Length;
 import br.com.zup.mercadolivre.config.validacao.ValidaSeTemIdValue;
 import br.com.zup.mercadolivre.model.Categoria;
 import br.com.zup.mercadolivre.model.Produto;
+import br.com.zup.mercadolivre.model.Usuario;
 
 
 
@@ -68,8 +70,8 @@ public class ProdutoRequestDto {
 		return descricao;
 	}
 
-	public Produto converter(EntityManager manager) {
+	public Produto converter(EntityManager manager, Usuario usuario) {
 		Categoria categoria = manager.find(Categoria.class, idCategoria);
-		return new Produto(nome,valor, quantidade, descricao, categoria, caracteristicas);
+		return new Produto(nome,valor, quantidade, descricao, categoria, caracteristicas, usuario);
 	}
 }

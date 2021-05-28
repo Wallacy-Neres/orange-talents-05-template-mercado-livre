@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
@@ -46,6 +47,9 @@ public class Produto {
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
 	private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
 	
+	@JoinColumn(name = "id_dono_produto")
+	@ManyToOne
+	private Usuario donoDoProduto;
 	
 	@NotBlank
 	@Length(max = 1000)
@@ -57,6 +61,9 @@ public class Produto {
 	
 	@NotNull
 	private LocalDateTime dataDeCriacao = LocalDateTime.now();
+
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<ImagemProduto> imagens = new HashSet<>();
 	
 	@Deprecated
 	public Produto() {
@@ -64,16 +71,28 @@ public class Produto {
 	}
 	
 	public Produto(String nome, BigDecimal valor, Integer quantidade,
-			String descricao, Categoria categoria, @Size(min = 3) @Valid Collection<NovaCaracteristicaRequest> caracteristicas) {
+			String descricao, Categoria categoria, @Size(min = 3) 
+			@Valid Collection<NovaCaracteristicaRequest> caracteristicas, Usuario usuario) {
 		this.nome = nome;
 		this.valor = valor;
 		this.categoria = categoria;
 		this.quantidade = quantidade;
 		this.descriçao = descricao;
+		this.donoDoProduto = usuario;
 		Set<CaracteristicaProduto> novasCaracteristicas = caracteristicas
 				.stream().map(caracteristica -> caracteristica.toModel(this))
 				.collect(Collectors.toSet());
 		this.caracteristicas.addAll(novasCaracteristicas);
+	}
+
+	public void associaImagens(Set<String> links) {
+		Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(this, link))
+		.collect(Collectors.toSet());
+		this.imagens.addAll(imagens);
+	}
+
+	public boolean pertenceAoUsuario(Usuario possivelDonoDoProduto) {
+		return this.donoDoProduto.equals(possivelDonoDoProduto);
 	}
 	
 	
