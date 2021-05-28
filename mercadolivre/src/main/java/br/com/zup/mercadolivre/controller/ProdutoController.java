@@ -53,7 +53,6 @@ public class ProdutoController {
 		}
 		
 		Set<String> links = uploaderFake.envia(request.getImagens());
-		System.out.println(links);
 		produto.associaImagens(links);
 		manager.merge(produto);
 	}
