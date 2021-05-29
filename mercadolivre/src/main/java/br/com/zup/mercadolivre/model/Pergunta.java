@@ -7,11 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import br.com.zup.mercadolivre.controller.dto.PerguntaRequestDto;
 
 @Entity
 public class Pergunta {
@@ -43,5 +41,19 @@ public class Pergunta {
 		this.produto = produto;
 		this.usuario = usuario;
 	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+	
+	
 	
 }

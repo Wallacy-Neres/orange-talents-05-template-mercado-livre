@@ -17,7 +17,8 @@ public class Mailer {
 		simpleMailMessage.setFrom(mensagem.getRemetente());
 		simpleMailMessage.setTo(mensagem.getDestinatarios());
 		simpleMailMessage.setSubject(mensagem.getAssunto());
-		simpleMailMessage.setText(mensagem.getCorpo());
+		simpleMailMessage.setSubject(mensagem.getCorpo());
+		
 		
 		javaMailSender.send(simpleMailMessage);
 	}

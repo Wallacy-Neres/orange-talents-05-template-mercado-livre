@@ -46,6 +46,20 @@ public class Usuario implements UserDetails {
 	public Long getId() {
 		return id;
 	}
+	
+	
+
+	public String getLogin() {
+		return login;
+	}
+
+
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+
 
 	@Deprecated
 	public Usuario() {
@@ -56,6 +70,8 @@ public class Usuario implements UserDetails {
 		this.login = login;
 		this.senha = senha;
 	}
+	
+	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -1,7 +1,5 @@
 package br.com.zup.mercadolivre.email;
 
-import java.util.List;
-
 public class Mensagem {
 	
 	private String remetente;

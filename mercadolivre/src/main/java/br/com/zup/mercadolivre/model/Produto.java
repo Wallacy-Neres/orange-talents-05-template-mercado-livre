@@ -94,6 +94,13 @@ public class Produto {
 	public boolean pertenceAoUsuario(Usuario possivelDonoDoProduto) {
 		return this.donoDoProduto.equals(possivelDonoDoProduto);
 	}
-	
+
+	public Usuario getDonoDoProduto() {
+		return donoDoProduto;
+	}
+
+	public void setDonoDoProduto(Usuario donoDoProduto) {
+		this.donoDoProduto = donoDoProduto;
+	}
 	
 }
