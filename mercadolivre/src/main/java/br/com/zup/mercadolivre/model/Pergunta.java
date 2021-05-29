@@ -27,6 +27,7 @@ public class Pergunta {
 	@ManyToOne
 	private Usuario usuario;
 	
+	@NotNull
 	@ManyToOne
 	private Produto produto;
 	

@@ -2,6 +2,7 @@ package br.com.zup.mercadolivre.controller.dto;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import br.com.zup.mercadolivre.model.Pergunta;
 import br.com.zup.mercadolivre.model.Produto;
@@ -12,6 +13,7 @@ public class PerguntaRequestDto {
 	@NotBlank
 	private String titulo;
 	
+	@NotNull
 	private Long idProduto;
 	
 	

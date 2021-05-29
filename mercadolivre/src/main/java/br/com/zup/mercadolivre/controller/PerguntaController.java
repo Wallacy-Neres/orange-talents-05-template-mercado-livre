@@ -38,7 +38,7 @@ public class PerguntaController {
 		Pergunta pergunta = perguntaRequest.converter(manager, usuario);
 		perguntaRepository.save(pergunta);
 		
-		enviaEmail.metodoEnviaEmail(pergunta);
+		//enviaEmail.metodoEnviaEmail(pergunta);
 		return ResponseEntity.ok().build();
 	}
 }
