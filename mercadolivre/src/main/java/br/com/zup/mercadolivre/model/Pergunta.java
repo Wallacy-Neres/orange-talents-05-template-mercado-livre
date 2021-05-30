@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-public class Pergunta {
+public class Pergunta implements Comparable<Pergunta>{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,6 +53,11 @@ public class Pergunta {
 
 	public Produto getProduto() {
 		return produto;
+	}
+
+	@Override
+	public int compareTo(Pergunta o) {
+		return this.titulo.compareTo(o.titulo);
 	}
 	
 	

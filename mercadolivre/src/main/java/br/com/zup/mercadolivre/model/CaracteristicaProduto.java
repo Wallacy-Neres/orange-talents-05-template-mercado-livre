@@ -28,10 +28,28 @@ public class CaracteristicaProduto {
 	@ManyToOne
 	private Produto produto;
 
+	@Deprecated
+	public CaracteristicaProduto() {
+		
+	}
+	
 	public CaracteristicaProduto(@NotBlank String nome, @NotBlank String descricao, @NotNull @Valid Produto produto) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.produto = produto;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	
 }
