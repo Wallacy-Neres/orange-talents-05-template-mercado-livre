@@ -158,5 +158,13 @@ public class Produto {
 	public OpinioesResponseDTO getOpinioes() {
 		return new OpinioesResponseDTO(this.opinioes);
 	}
+
+	public boolean abateEstoque(@Positive int quantidade) {
+		if(this.quantidade >= quantidade) {
+			this.quantidade -= quantidade;
+			return true;
+		}
+		return false;
+	}
 	
 }
